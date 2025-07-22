@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
   res.send("API is working");
 });
 
-// 1️⃣ Get Polling Unit Results
+// Get Polling Unit Results
 app.get("/api/polling-unit/:id/results", async (req, res) => {
   const id = req.params.id;
   const results = await prisma.announcedPUResult.findMany({
@@ -21,7 +21,7 @@ app.get("/api/polling-unit/:id/results", async (req, res) => {
   res.json(results);
 });
 
-// 2️⃣ Get All LGAs (for dropdown)
+// Get All LGAs (for dropdown)
 app.get("/api/lgas", async (req, res) => {
   const lgas = await prisma.lGA.findMany({
     select: { uniqueid: true, lga_name: true },
@@ -69,6 +69,8 @@ app.post("/api/polling-units", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("API yo at http://localhost:3000");
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
+
