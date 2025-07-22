@@ -14,7 +14,7 @@ function PollingUnitResult() {
 
     setLoading(true);
     axios
-      .get(`http://localhost:3000/api/polling-unit/${pollingUnitId}/results`)
+      .get(`https://poll-vote-y8cw.onrender.com/api/polling-unit/${pollingUnitId}/results`)
       .then((res) => {
         setResults(res.data);
         setLoading(false);
