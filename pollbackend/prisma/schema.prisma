@@ -1,0 +1,106 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model AgentName {
+  name_id               Int     @id @default(autoincrement())
+  firstname             String
+  lastname              String
+  email                 String?
+  phone                 String
+  pollingunit_uniqueid  Int
+}
+
+model AnnouncedPUResult {
+  result_id               Int      @id @default(autoincrement())
+  polling_unit_uniqueid   String
+  party_abbreviation      String
+  party_score             Int
+  entered_by_user         String
+  date_entered            DateTime
+  user_ip_address         String
+}
+
+model AnnouncedLGAResult {
+  result_id               Int      @id @default(autoincrement())
+  lga_name                String
+  party_abbreviation      String
+  party_score             Int
+  entered_by_user         String
+  date_entered            DateTime
+  user_ip_address         String
+}
+
+model AnnouncedStateResult {
+  result_id               Int      @id @default(autoincrement())
+  polling_unit_uniqueid             String
+  party_abbreviation      String
+  party_score             Int
+  entered_by_user         String
+  date_entered            DateTime
+  user_ip_address         String
+}
+
+model AnnouncedWardResult {
+  result_id               Int      @id @default(autoincrement())
+  ward_name               String
+  party_abbreviation      String
+  party_score             Int
+  entered_by_user         String
+  date_entered            DateTime
+  user_ip_address         String
+}
+
+model LGA {
+  uniqueid           Int     @id @default(autoincrement())
+  lga_id             Int
+  lga_name           String
+  state_id           Int
+  lga_description    String?
+  entered_by_user    String
+  date_entered       DateTime
+  user_ip_address    String
+}
+
+model Party {
+  id          Int     @id @default(autoincrement())
+  partyid     String
+  partyname   String
+}
+
+model PollingUnit {
+  uniqueid                    Int      @id @default(autoincrement())
+  polling_unit_id             Int
+  ward_id                     Int
+  lga_id                      Int
+  uniquewardid                Int?
+  polling_unit_number         String?
+  polling_unit_name           String?
+  polling_unit_description    String?
+  lat                         String?
+  long                        String?
+  entered_by_user             String?
+  date_entered                DateTime?
+  user_ip_address             String?
+}
+
+model State {
+  state_id    Int     @id
+  state_name  String
+}
+
+model Ward {
+  uniqueid            Int      @id @default(autoincrement())
+  ward_id             Int
+  ward_name           String
+  lga_id              Int
+  ward_description    String?
+  entered_by_user     String
+  date_entered        DateTime
+  user_ip_address     String
+}
