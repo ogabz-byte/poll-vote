@@ -26,7 +26,7 @@ function CreatePollingUnitPage() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:3000/api/polling-units", form);
+      await axios.post("https://poll-vote-y8cw.onrender.com/api/polling-units", form);
       alert("New polling unit created.");
       setForm({
         // reset form
