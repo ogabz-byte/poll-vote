@@ -7,7 +7,7 @@ function LgaPollingUnitPage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/lgas")
+      .get("https://poll-vote-y8cw.onrender.com/api/lgas")
       .then((res) => {
         console.log("Fetched LGAs:", res.data);
         setLgas(res.data);
